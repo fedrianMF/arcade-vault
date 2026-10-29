@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { Nav } from "@/components/nav";
 import { GAMES } from "@/lib/data";
 import type { Route } from "@/lib/types";
 
@@ -47,6 +48,7 @@ export function AppShell() {
 
   return (
     <>
+      <Nav route={route} navigate={navigate} />
       <main className="av-main">
         <Placeholder route={route} navigate={navigate} />
       </main>
