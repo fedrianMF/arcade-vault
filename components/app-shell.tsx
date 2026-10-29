@@ -32,6 +32,21 @@ function parseHash(hash: string): Route {
   return DEFAULT_ROUTE;
 }
 
+function renderScreen(route: Route, navigate: (r: Route) => void) {
+  switch (route.name) {
+    case "biblioteca":
+      return <Library navigate={navigate} />;
+    case "detalle":
+      return <GameDetail id={route.id} navigate={navigate} />;
+    case "player":
+      return <GamePlayer id={route.id} navigate={navigate} />;
+    case "auth":
+      return <Auth navigate={navigate} />;
+    case "salon":
+      return <HallOfFame navigate={navigate} />;
+  }
+}
+
 export function AppShell() {
   const [route, setRoute] = useState<Route>(DEFAULT_ROUTE);
 
@@ -55,19 +70,7 @@ export function AppShell() {
     <>
       <Nav route={route} navigate={navigate} />
       <main className="av-main">
-        {route.name === "biblioteca" ? (
-          <Library navigate={navigate} />
-        ) : route.name === "detalle" ? (
-          <GameDetail id={route.id} navigate={navigate} />
-        ) : route.name === "auth" ? (
-          <Auth navigate={navigate} />
-        ) : route.name === "salon" ? (
-          <HallOfFame navigate={navigate} />
-        ) : route.name === "player" ? (
-          <GamePlayer id={route.id} navigate={navigate} />
-        ) : (
-          <Placeholder route={route} navigate={navigate} />
-        )}
+        {renderScreen(route, navigate)}
       </main>
       <footer
         style={{
@@ -83,28 +86,5 @@ export function AppShell() {
         © 2026 ARCADE VAULT · HECHO CON PIXELES Y NEÓN · v2.6.0
       </footer>
     </>
-  );
-}
-
-// Marcador temporal por ruta; se reemplaza por las pantallas reales en los pasos 5-10.
-function Placeholder({ route, navigate }: { route: Route; navigate: (r: Route) => void }) {
-  const links: Route[] = [
-    { name: "biblioteca" },
-    { name: "detalle", id: "caida" },
-    { name: "player", id: "caida" },
-    { name: "auth" },
-    { name: "salon" },
-  ];
-  return (
-    <div style={{ padding: 32, fontFamily: "var(--mono)" }}>
-      <p>RUTA: {route.name}{"id" in route ? ` · ${route.id}` : ""}</p>
-      <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
-        {links.map((l) => (
-          <button key={l.name} onClick={() => navigate(l)}>
-            {l.name}
-          </button>
-        ))}
-      </div>
-    </div>
   );
 }
