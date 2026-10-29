@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Nav } from "@/components/nav";
+import { Library } from "@/components/screens/library";
 import { GAMES } from "@/lib/data";
 import type { Route } from "@/lib/types";
 
@@ -50,7 +51,11 @@ export function AppShell() {
     <>
       <Nav route={route} navigate={navigate} />
       <main className="av-main">
-        <Placeholder route={route} navigate={navigate} />
+        {route.name === "biblioteca" ? (
+          <Library navigate={navigate} />
+        ) : (
+          <Placeholder route={route} navigate={navigate} />
+        )}
       </main>
       <footer
         style={{
