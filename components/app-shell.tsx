@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Nav } from "@/components/nav";
+import { GameDetail } from "@/components/screens/game-detail";
 import { Library } from "@/components/screens/library";
 import { GAMES } from "@/lib/data";
 import type { Route } from "@/lib/types";
@@ -53,6 +54,8 @@ export function AppShell() {
       <main className="av-main">
         {route.name === "biblioteca" ? (
           <Library navigate={navigate} />
+        ) : route.name === "detalle" ? (
+          <GameDetail id={route.id} navigate={navigate} />
         ) : (
           <Placeholder route={route} navigate={navigate} />
         )}
