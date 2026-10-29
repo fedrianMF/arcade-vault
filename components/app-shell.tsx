@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Nav } from "@/components/nav";
 import { Auth } from "@/components/screens/auth";
 import { GameDetail } from "@/components/screens/game-detail";
+import { HallOfFame } from "@/components/screens/hall-of-fame";
 import { Library } from "@/components/screens/library";
 import { GAMES } from "@/lib/data";
 import type { Route } from "@/lib/types";
@@ -59,6 +60,8 @@ export function AppShell() {
           <GameDetail id={route.id} navigate={navigate} />
         ) : route.name === "auth" ? (
           <Auth navigate={navigate} />
+        ) : route.name === "salon" ? (
+          <HallOfFame navigate={navigate} />
         ) : (
           <Placeholder route={route} navigate={navigate} />
         )}
