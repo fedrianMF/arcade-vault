@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { Nav } from "@/components/nav";
+import { Auth } from "@/components/screens/auth";
 import { GameDetail } from "@/components/screens/game-detail";
 import { Library } from "@/components/screens/library";
 import { GAMES } from "@/lib/data";
@@ -56,6 +57,8 @@ export function AppShell() {
           <Library navigate={navigate} />
         ) : route.name === "detalle" ? (
           <GameDetail id={route.id} navigate={navigate} />
+        ) : route.name === "auth" ? (
+          <Auth navigate={navigate} />
         ) : (
           <Placeholder route={route} navigate={navigate} />
         )}
