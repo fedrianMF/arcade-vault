@@ -6,11 +6,12 @@ import { Auth } from "@/components/screens/auth";
 import { GameDetail } from "@/components/screens/game-detail";
 import { GamePlayer } from "@/components/screens/game-player";
 import { HallOfFame } from "@/components/screens/hall-of-fame";
+import { Home } from "@/components/screens/home";
 import { Library } from "@/components/screens/library";
 import { GAMES } from "@/lib/data";
 import type { Route } from "@/lib/types";
 
-const DEFAULT_ROUTE: Route = { name: "biblioteca" };
+const DEFAULT_ROUTE: Route = { name: "home" };
 
 function parseHash(hash: string): Route {
   try {
@@ -18,6 +19,7 @@ function parseHash(hash: string): Route {
     if (!raw) return DEFAULT_ROUTE;
     const r = JSON.parse(decodeURIComponent(raw));
     switch (r?.name) {
+      case "home":
       case "biblioteca":
       case "auth":
       case "salon":
@@ -27,13 +29,15 @@ function parseHash(hash: string): Route {
         return GAMES.some((g) => g.id === r.id) ? { name: r.name, id: r.id } : DEFAULT_ROUTE;
     }
   } catch {
-    // Hash con JSON inválido: cae a la biblioteca.
+    // Hash con JSON inválido: cae a Home.
   }
   return DEFAULT_ROUTE;
 }
 
 function renderScreen(route: Route, navigate: (r: Route) => void) {
   switch (route.name) {
+    case "home":
+      return <Home navigate={navigate} />;
     case "biblioteca":
       return <Library navigate={navigate} />;
     case "detalle":
