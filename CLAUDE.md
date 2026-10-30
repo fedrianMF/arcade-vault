@@ -22,6 +22,9 @@ No test runner is configured.
 ## Skills
 Usa siempre /frontend-design para diseñar la interfaz de usuario.
 
+## Playwright
+Guarda todos los screenshots de Playwright en `.playwright-screenshots/` (usa `filename: ".playwright-screenshots/<nombre>.png"` en `browser_take_screenshot`).
+
 ## Architecture
 
 - Next.js (App Router, `app/` at the repo root), React 19, TypeScript, Tailwind CSS v4 (via `@tailwindcss/postcss`, see `postcss.config.mjs`). The app is still the Create Next App scaffold (`app/layout.tsx`, `app/page.tsx`, `app/globals.css`).
