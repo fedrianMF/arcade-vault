@@ -1,4 +1,5 @@
 export type Route =
+  | { name: "home" }
   | { name: "biblioteca" }
   | { name: "detalle"; id: string }
   | { name: "player"; id: string }
